@@ -126,7 +126,7 @@ Anthropic Claude API
 
 ## Author
 
-**Asritha Penumalli**
+**Asrithavalli Penumalli**
 MS Computer Science — University of Central Florida (GPA: 3.97)
 
 [LinkedIn](https://linkedin.com/in/Asritha-valli-Penumalli) · [GitHub](https://github.com/asritha660)
