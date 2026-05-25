@@ -550,7 +550,7 @@ function InterviewRoom({ go, interview, difficulty, user, onComplete }) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        model: "claude-haiku-4-5",
+        model: "claude-haiku-4-5-20251001",
         max_tokens: 1000,
         system: systemPrompt,
         messages: [
@@ -684,11 +684,11 @@ When you ask a new coding question, start your message with "QUESTION:" so it ca
                   setLoading(true);
                   const systemPrompt = `You are a senior software engineer at a top tech company conducting a ${difficulty} level ${interview?.label} mock interview. Ask one focused, unique question to start the interview. Be concise and direct. When you ask a coding question, start your message with "QUESTION:".`;
                   try {
-                    const res = await fetch("http://localhost:3001/api/chat", {
+                    const res = await fetch("https://intrvwai-production.up.railway.app/api/chat", {
                       method: "POST",
                       headers: { "Content-Type": "application/json" },
                       body: JSON.stringify({
-                        model: "claude-haiku-4-5",
+                        model: "claude-haiku-4-5-20251001",
                         max_tokens: 1000,
                         system: systemPrompt,
                         messages: [{ role: "user", content: "Start the interview with your first question." }],
