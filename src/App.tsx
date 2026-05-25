@@ -544,7 +544,7 @@ function InterviewRoom({ go, interview, difficulty, user, onComplete }) {
   };
 
   const callAI = async (userMsg, systemPrompt) => {
-    const res = await fetch("http://localhost:3001/api/chat", {
+    const res = await fetch("https://intrvwai-production.up.railway.app/api/chat", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
