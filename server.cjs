@@ -3,7 +3,14 @@ const express = require("express");
 const cors = require("cors");
 
 const app = express();
-app.use(cors());
+
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}));
+
+app.options("*", cors());
 app.use(express.json());
 
 app.post("/api/chat", async (req, res) => {
@@ -18,7 +25,7 @@ app.post("/api/chat", async (req, res) => {
       body: JSON.stringify(req.body),
     });
     const data = await response.json();
-    console.log("Status:", response.status, "| Response:", JSON.stringify(data).slice(0, 150));
+    console.log("Status:", response.status);
     res.status(response.status).json(data);
   } catch (error) {
     console.error("Error:", error.message);
@@ -26,4 +33,4 @@ app.post("/api/chat", async (req, res) => {
   }
 });
 
-app.listen(3001, () => console.log("Proxy running on port 3001"));
+app.listen(process.env.PORT || 3001, () => console.log("Proxy running"));
