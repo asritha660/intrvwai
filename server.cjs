@@ -1,17 +1,21 @@
 require("dotenv").config();
 const express = require("express");
-const cors = require("cors");
 
 const app = express();
 
-app.use(cors({
-  origin: "*",
-  methods: ["GET", "POST", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-}));
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
+  if (req.method === "OPTIONS") {
+    return res.status(200).end();
+  }
+  next();
+});
 
-app.options("*", cors());
 app.use(express.json());
+
+app.get("/", (req, res) => res.json({ status: "ok" }));
 
 app.post("/api/chat", async (req, res) => {
   try {
